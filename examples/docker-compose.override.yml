@@ -1,0 +1,25 @@
+version: '2.1'
+services:
+  mysql-mailcow:
+    volumes:
+      - mysql-backup-vol-1:/backup/mariadb:rw
+  borgbackup-mailcow:
+    image: maltejk/borgbackup-mailcow:latest
+    env_file:
+      - mailcow.conf
+      - mailcow-backup.conf
+    volumes:
+      - vmail-vol-1:/backup/vmail:ro
+      - redis-vol-1:/backup/redis:ro
+      - rspamd-vol-1:/backup/rspamd:ro
+      - postfix-vol-1:/backup/postfix:ro
+      - crypt-vol-1:/backup/crypt:ro
+      - mysql-backup-vol-1:/backup/mariadb:rw
+      - ./mailcow.conf:/backup/mailcow.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - ./data/ssh:/root/.ssh:rw
+    networks:
+      mailcow-network:
+volumes:
+  mysql-backup-vol-1:
+

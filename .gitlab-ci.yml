@@ -1,0 +1,9 @@
+include:
+  - project: 'images/cicd-templates'
+    ref: master
+    file: '/simple-image-build.yml'
+
+build:
+  variables:
+    IMAGE_TAG: latest
+  extends: .build-image
