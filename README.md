@@ -7,4 +7,4 @@ To do so, a `docker-compose.override.yml` and `mailcow-backup.conf` is needed, s
 `examples/`. Also, be sure to mount a private SSH-key at `/root/.ssh/` inside the
 container.
 
-The images is based on `maltejk/borgbackup` for simplicity.
+The image is based on `maltejk/borgbackup` for simplicity.
